@@ -2,6 +2,7 @@ package com.paes.movie_catalog.dto;
 
 import java.time.LocalDateTime;
 
+
 public record MovieResponseDTO(
         Long id,
         String title,

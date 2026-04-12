@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table
+@Table(name = "movies")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,12 +23,10 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O título é obrigatório!")
-    @Size(max = 200)
+    @Column(nullable = false, length = 200)
     private String title;
 
-
-    @Size(max = 1000)
+    @Column(length = 1000)
     private String description;
 
     private Integer releaseYear;
@@ -41,6 +39,12 @@ public class Movie {
 
     private String posterUrl;
 
+    @Column(updatable = false)
     private LocalDateTime createdAt;
+
+    @PrePersist
+    public void prePresist(){
+        this.createdAt = LocalDateTime.now();
+    }
 
 }
