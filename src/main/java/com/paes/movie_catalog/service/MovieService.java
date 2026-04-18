@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 @Service
@@ -18,10 +20,12 @@ public class MovieService {
 
     private final MovieRepository movieRepository;
     private final Mapper mapper;
+    private final S3Service s3Service;
 
-    public MovieService (MovieRepository movieRepository, Mapper mapper){
+    public MovieService (MovieRepository movieRepository, Mapper mapper, S3Service s3Service){
         this.movieRepository = movieRepository;
         this.mapper = mapper;
+        this.s3Service = s3Service;
     }
 
     public List<MovieResponseDTO> findAll(){
@@ -63,6 +67,15 @@ public class MovieService {
             throw new MovieNotFoundException(id);
         }
         movieRepository.deleteById(id);
+    }
+
+    public MovieResponseDTO uploadPoster(Long id, MultipartFile multipartFile){
+        Movie movie = movieRepository.findById(id).orElseThrow(() -> new MovieNotFoundException(id));
+        String url = s3Service.uploadFile(multipartFile);
+        movie.setPosterUrl(url);
+        Movie saved = movieRepository.save(movie);
+
+        return mapper.toResponseDTO(saved);
     }
 
 }

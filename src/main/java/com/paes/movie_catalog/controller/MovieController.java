@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -55,6 +56,13 @@ public class MovieController {
     public ResponseEntity<Void> delete(@PathVariable Long id){
         movieService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{id}/poster")
+    public ResponseEntity<MovieResponseDTO> uploadFile(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
+
+        return ResponseEntity.ok(movieService.uploadPoster(id, file));
+
     }
 
 }
