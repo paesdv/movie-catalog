@@ -1,5 +1,3 @@
 spring:
   application:
     name: movie-catalog
-  profiles:
-    active: dev
