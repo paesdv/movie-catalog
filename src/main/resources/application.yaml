@@ -12,9 +12,8 @@ spring:
     show-sql: false
 
 jwt:
-  secret: ${JWT_SECRET}
-  expiration: ${JWT_EXPIRATION}
-
+  secret: dev-secret-key-muito-longa-aqui-minimo-32-caracteres-0123456789
+  expiration: 86400000
 aws:
   access-key: ${AWS_ACCESS_KEY}
   secret-key: ${AWS_SECRET_KEY}
