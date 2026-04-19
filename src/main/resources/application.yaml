@@ -2,10 +2,10 @@ spring:
   application:
     name: movie-catalog
   datasource:
-    # Montando a URL usando as variáveis nativas do Railway
-    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+    url: ${SPRING_DATASOURCE_URL}
     username: ${PGUSER}
     password: ${PGPASSWORD}
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
