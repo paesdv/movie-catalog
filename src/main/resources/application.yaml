@@ -11,8 +11,7 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 jwt:
-  secret: ${JWT_SECRET}
-  expiration: 86400000
+  secret: ${JWT_SECRET:uma_chave_temporaria_com_mais_de_32_caracteres_para_teste}
 
 aws:
   access-key: ${AWS_ACCESS_KEY}
