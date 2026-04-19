@@ -2,9 +2,10 @@ spring:
   application:
     name: movie-catalog
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    # Montando a URL usando as variáveis nativas do Railway
+    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
@@ -13,6 +14,7 @@ spring:
 jwt:
   secret: ${JWT_SECRET:uma_chave_temporaria_com_mais_de_32_caracteres_para_teste}
   expiration: 86400000
+
 aws:
   access-key: ${AWS_ACCESS_KEY}
   secret-key: ${AWS_SECRET_KEY}
