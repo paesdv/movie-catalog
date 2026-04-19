@@ -1,6 +1,10 @@
 spring:
   application:
     name: movie-catalog
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
@@ -8,7 +12,7 @@ spring:
     show-sql: false
 
 jwt:
-  secret: dev-secret-key-muito-longa-aqui-minimo-32-caracteres-0123456789
+  secret: ${JWT_SECRET}
   expiration: 86400000
 
 aws:
