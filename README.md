@@ -200,4 +200,4 @@ Esse projeto foi minha primeira API completa em produção. Ao longo do desenvol
 
 ## 👨‍💻 Autor
 
-Feito com muito café e paciência.
+Feito com muito café e paciência por Matheus Paes.
